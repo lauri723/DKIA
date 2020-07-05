@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container b_show">
+    <div class="b_items">
+        <ul class="list-group b_list text-center">
+            <li class="list-group-item item_title"><a><%= blog.title %></a></li>
+            <li class="list-group-item item_date float-left">
+                <div class="meta">
+                    <span><%= blog.created.toDateString() %></span>
+                </div>
+            </li>
+            <li class="list-group-item img-fluid item_img"><img src="<%= blog.image %>" width="350"></li>
+            <li class="list-group-item item_body"><p id="blog_body"><%= blog.body %></p></li>
+            <!-- <li class="list-group-item item_more text-right"><a href="/blogs/<%=blog._id %>"  class="btn btn-outline-light btn-lg card_btn">Read more...</a></li> -->
+        </ul>  
+    </div>
+</div>
+    
+
+
+<!-- <div class="ui main text container segment">
+    <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
+            <div class="content">
+                <span><%= blog.created.toDateString() %></span>
+            </div>
+            <div class="description">
+                <p><%- blog.body %></p>
+            </div>
+            <a class="ui purple basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+            <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+        </div>
+    </div>    
+</div>
+<%- include("../partials/footer") %> -->

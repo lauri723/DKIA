@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container new_blog">
+    <div class="row">
+        <h1 class="p_span text-center new_title">Add new blog post:  </h1>
+        <div class="new_blog_group">
+            <form action="/blogs" method="POST">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input class="form-control new_form" type="text" name="blog[title]" placeholder="title goes here">
+                </div>
+                <div class="form-group">
+                    <label for="">Image</label>
+                    <input class="form-control new_form" type="text" name="blog[image]" placeholder="copy image url">
+                </div>
+                <div class="form-group">
+                    <label for="">Blog content</label>
+                    <textarea class="new_form form-control" name="blog[body]" id="" rows="20" placeholder="start blog here"></textarea>
+                </div>
+                <div class="form-group new_buttons">
+                    <button class="btn btn-outline-light btn-lg card_btn new_buttons">Submit</button>
+                    <a href="/blogs" class="btn btn-outline-light btn-lg card_btn new_buttons">Go Back</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
+

@@ -1,0 +1,134 @@
+<%- include("./partials/header") %>
+
+<body>
+    <div class="container header justify-content: center">
+        <img id="text_header" src="/images/dkia/Header.jpg" alt="text header">
+    </div>
+
+    <div class="container">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <!-- <a id="brand" class="navbar-brand active" href="#"><img src="Images/dkia/Dave.png" width="50" height="50" alt=""></a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/diamonds">Diamonds</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gemstones">Gemstones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jewelry">Jewelry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogs">Blog</a>
+                    </li>
+                </ul>
+            </div>
+      </nav>
+    </div>
+
+    <section id="show">
+        <div class="container justify-content: center">
+            <div class="row mx-3">
+                <div class="col-lg-4 embed">  
+                    <h4 class="text-center align-top">Listen to the podcast!</h4>
+                    <div id='buzzsprout-large-player-923026'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/923026.js?container_id=buzzsprout-large-player-923026&player=large'></script>
+                </div>
+                <div class="col-lg-8 blurbs">
+                    <p id="podcast">
+                        <span class="p_span">Before</span> purchasing an engagement ring, diamond or precious gemstone jewelry, let Dave, a 3rd generation jeweler, help you make the right decisions. From the 4Cs of diamond grading, to the fine jewelry store that's right for you, you'll learn it all.
+                    </p>
+                    <p id="meet">
+                        <span class="p_span">Meet your host...</span> 
+                        <br/>
+                        Dave, the Diamond Know It All, has over three decades of jewelry industry experience as a designer, manufacturer, buyer, store owner, and consultant to other jewelers. His goal is to help the retail customer take all the fright, fear, terror, and stress, out of purchasing a diamond or gemstone jewelry. 
+                        <!-- Not only will he prepare you to spot and battle misinformation, but to know when you’re being treated with the honesty you deserve! Mixed with humor, Dave will cover a different topic each week, including diamond grading, colored gemstones, diamond and gem reports, appraisals, insuring your jewelry, the myths or legends associated with different gems, and lots more. -->
+                    </p>      
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="references">
+        <div class="container ref_cards">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card">       
+                        <div class="card-body text-center">
+                            <a href="/diamonds" class="btn btn-outline-light btn-lg card_btn">Diamonds</a>
+                            <p class="card-text"><span class="c_span">Learn</span> about the 4C's of diamond grading!</p>    
+                        </div>
+                        <div class="card_image">
+                            <img class="card-img-top img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_VeNaJ-AUY4OuuOrmwt2xm22o230DbPKjukeBvSbMjg&usqp=CAU&ec=45675147" alt="" width="210" height="210">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div id="card_one" class="card">       
+                        <div class="card-body text-center">
+                            <a href="/gemstones" class="btn btn-outline-light btn-lg card_btn">Gemstones</a>
+                            <p class="card-text"><span class="c_span">Find</span> your birthstone, and more!</p>     
+                        </div>
+                        <div class="card_image">
+                            <img class="card-img-top img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRktOGdS0EJjfqc2PywUuBS_6Qgwg9x3Jl0hQ&usqp=CAU" alt="" width="210" height="210">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">       
+                        <div class="card-body text-center">
+                            <a href="/jewelry" class="btn btn-outline-light btn-lg card_btn">Jewelry</a>
+                            <p class="card-text"><span class="c_span">Discover</span> the pieces and parts of jewelry!</p>                        
+                        </div>
+                        <div class="card_image ">
+                            <img class="card-img-top img-fluid" src="https://thumbs.dreamstime.com/b/gold-jewelry-isolated-white-background-earrings-bracelet-ring-luxury-lifestyle-164098535.jpg" alt="" width="210" height="210">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container i_blog text-center">
+            <p id="p_i_blog">
+                Visit Dave's<a href="/blogs" id="b_btn" class="btn btn-outline-light btn-lg card_btn">Blog</a>
+            </p>
+            <p id="b_btn" class="mb-4">
+               <span class="c_span">Recap</span>  of the Diamond Know It All podcasts, and <span class="c_span">MORE!</span>
+            </p>
+            <a id="img_i_blog" href="/blogs"><img src="images/dkia/Dave.png" alt="" width="450"</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="container contact">
+            <div class="row">
+                <div class="col-lg-6 email_contact text-left">
+                    <a href="mailto:Dave@DiamondKnowItAll.com? 
+                        subject=DKIA Contact">
+                        <button class="btn btn-outline-light btn-lg card_btn">
+                        <span class="contact_span">CONTACT DAVE!</span></button></a>
+                </div>
+                <div class="col-lg-6 social_contact text-right">
+                    <a href="https://www.facebook.com/DiamondKnowItAll">
+                        <button class="btn btn-outline-light btn-lg card_btn">Find us on 
+                        <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png" 
+                        alt="" width="45" height="45"><span class="contact_span"> HERE!</span></button></a>
+                </div>
+            </div>        
+        </div>
+    </section>
+
+    
+    <%- include("./partials/footer") %>
+   
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
