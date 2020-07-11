@@ -1,129 +1,58 @@
-var bodyParser       = require("body-parser"),
-    methodOverride   = require("method-override"),
+require("dotenv").config();
+var express        = require("express"),
+    app            = express(),
+    bodyParser     = require("body-parser"),
+    mongoose       = require("mongoose"),
+    passport       = require("passport"),
+    cookieParser   = require("cookie-parser"),
+    LocalStrategy  = require("passport-local"),
     expressSanitizer = require("express-sanitizer"),
-    mongoose         = require("mongoose"),
-    express          = require("express"),
-    app              = express();
+    Blog           = require("./models/blog"),
+    Comment        = require("./models/comment"),
+    User           = require("./models/user"),
+    session        = require("express-session"),
+    methodOverride = require("method-override")
 
-// APP CONFIG
-    mongoose.connect("mongodb://localhost/temp_dkia", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-   
-    app.set("view engine", "ejs");
-    app.use(express.static("public"));
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(expressSanitizer());
-    app.use(methodOverride("_method"));
+var commentRoutes  = require("./routes/comments"),
+    blogRoutes     = require("./routes/blogs"),
+    indexRoutes    = require("./routes/index")
 
-// MONGOOSE/MODEL CONFIG
-    var blogSchema = new mongoose.Schema({
-        title: String,
-        image: String,
-        body: String,
-        created: {type: Date, default: Date.now}
-    });
+mongoose.connect("mongodb://localhost/temp_dkia", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
- var Blog = mongoose.model("Blog", blogSchema);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
+app.locals.moment = require('moment');
+app.use(cookieParser('secret'));
 
+app.use(require("express-session")({
+    secret: "I am really short",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
- // RESTFUL ROUTES
-
- app.get("/", function (req, res) {
-     res.render("index");
- });
-
- app.get("/diamonds", function (req, res){
-      res.render("diamonds");
- });
-
- app.get("/gemstones", function (req, res){
-  res.render("gemstones");
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
 });
 
-app.get("/jewelry", function (req, res){
-  res.render("jewelry");
+app.use("/", indexRoutes);
+app.use("/blogs", blogRoutes);
+app.use("/blogs/:id/comments", commentRoutes)
+
+
+// app.listen(process.env.PORT, process.env.IP, () => {
+//     console.log("The Server Has Started!");
+//  }); 
+
+
+app.listen(3000, function() { 
+    console.log('Server listening on port 3000'); 
 });
-
- // INDEX ROUTE
- app.get("/blogs", function (req, res) {
-     Blog.find({}, function (err, blogs) {
-         if(err) {
-             console.log("ERROR!");
-         } else {
-            res.render("blogs/home", {blogs: blogs});
-         }
-     })
- });
- 
- // NEW ROUTE
- app.get("/blogs/new", function (req, res) {
-     res.render("blogs/new");
- });
- 
- // CREATE ROUTE
- app.post("/blogs", function (req, res) {
-    // create blog
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(req.body.blog, function (err, newBlog) {
-        if (err) {
-            res.render("/blogs/new");
-        } else {
-             // redirect to index
-            res.redirect("/blogs");
-        }
-    });
- });
-
- // SHOW ROUTE
- app.get("/blogs/:id", function (req, res) {
-     Blog.findById(req.params.id, function (err, foundBlog) {
-        if (err) {
-            res.redirect("/blogs");
-        } else {
-            res.render("blogs/show", {blog: foundBlog});
-        }
-     });
- });
-
-// EDIT ROUTE
-app.get("/blogs/:id/edit", function (req, res) {
-    Blog.findById(req.params.id, function(err, foundBlog) {
-        if(err) {
-            res.redirect("/blogs");
-        } else {
-            res.render("blogs/edit", {blog: foundBlog});
-        }
-    });
-});
-
-// UPDATE ROUTE
-app.put("/blogs/:id", function(req, res) {
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
-        if(err) {
-            res.redirect("/blogs");
-        } else {
-            res.redirect("blogs" + req.params.id);
-        }
-    });
-});
-
-// DESTROY ROUTE
-app.delete("/blogs/:id", function (req, res) {
-    // destroy blog
-    Blog.findByIdAndRemove(req.params.id, function(err) {
-        if(err) {
-            res.redirect("/blogs");
-     // redirect somewhere
-        } else {
-            res.redirect("/blogs");
-        }
-    })
-})
-
-
-
-
-    app.listen(3000, function() { 
-        console.log('Server listening on port 3000'); 
-      });
-  

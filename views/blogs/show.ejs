@@ -1,5 +1,5 @@
-<%- include("../partials/header") %>
-<%- include("../partials/navbar") %>
+<%- include("../partials/headerBlog") %>
+<%- include("../partials/navbarBlog") %>
 
 <div class="container b_show">
     <div class="b_items">
@@ -10,31 +10,45 @@
                     <span><%= blog.created.toDateString() %></span>
                 </div>
             </li>
-            <li class="list-group-item img-fluid item_img"><img src="<%= blog.image %>" width="350"></li>
+            <li class="list-group-item img-fluid item_img"><img src="<%= blog.image %>" width="325"></li>
             <li class="list-group-item item_body"><p id="blog_body"><%= blog.body %></p></li>
-            <!-- <li class="list-group-item item_more text-right"><a href="/blogs/<%=blog._id %>"  class="btn btn-outline-light btn-lg card_btn">Read more...</a></li> -->
-        </ul>  
+            <p>
+                <a>Thanks for listening,  <%= blog.author.username %></a>   
+            </p>
+            <% if(currentUser && currentUser.isAdmin){ %>
+                <a class="btn btn-outline-light btn-lg card_btn new_buttons" href="/blogs/<%= blog._id %>/edit">Edit Blog</a> 
+                <form method="POST" action="/blogs/<%=blog._id%>?_method=DELETE">
+                    <button class="btn btn-outline-light btn-lg card_btn cb_rev new_buttons" type="submit">Delete Blog</button>
+                </form>
+            <% }%>
+        </ul> 
     </div>
-</div>
-    
-
-
-<!-- <div class="ui main text container segment">
-    <div class="ui huge header"><%= blog.title %></div>
-    <div class="ui top attached">
-        <div class="item">
-            <img class="ui centered rounded image" src="<%= blog.image %>" alt="">
-            <div class="content">
-                <span><%= blog.created.toDateString() %></span>
-            </div>
-            <div class="description">
-                <p><%- blog.body %></p>
-            </div>
-            <a class="ui purple basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
-            <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-                <button class="ui red basic button">Delete</button>
-            </form>
+    <div class="container b_show">
+        <div>
+            <a class="btn btn-outline-light btn-lg card_btn" href="/blogs/<%= blog._id %>/comments/new">Add New Comment</a>
         </div>
-    </div>    
-</div>
-<%- include("../partials/footer") %> -->
+        <% blog.comments.forEach(function(comment){ %>
+            <div class="card">
+                <div class="card-body comments">
+                    <form class="form-inline">
+                        <p class="card-text comment_author">Comment by  <strong><%= comment.author.username %></strong>  -  <%= moment(comment.createdAt).fromNow() %></p>
+                    </form>
+                    <p class="card-text comment_text"><%= comment.text %></p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                        <a class="btn btn-outline-light btn-lg card_btn comment_buttons float-left" 
+                            href="/blogs/<%=blog._id %>/comments/<%=comment._id %>/edit">Edit Comment</a>
+                        <form id="delete-form" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-outline-light btn-lg card_btn cb_rev comment_buttons float-right" type="submit">Delete Comment</button>
+                        </form>        
+                <% }%>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div> 
+         
+
+<%- include("../partials/footer") %>
+
+
+

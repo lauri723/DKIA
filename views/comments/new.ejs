@@ -1,0 +1,27 @@
+<%- include("../partials/headerBlog") %>
+<%- include("../partials/navbarBlog") %>
+
+
+<div class="container new_blog">
+    <div class="row">
+        <h1 class="p_span text-center new_title">Add New Comment to <%= blog.title %>:  </h1>
+        <div class="new_blog_group">
+            <form action="/blogs/<%= blog._id %>/comments" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comment[text]" placeholder="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comment[author]" placeholder="author">
+                </div>
+                <div class="form-group new_buttons">
+                    <button class="btn btn-outline-light btn-lg card_btn new_buttons">Submit</button>
+                    <a href="/blogs" class="btn btn-outline-light btn-lg card_btn new_buttons">Go Back</a>
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
+
+

@@ -1,0 +1,41 @@
+<%- include("../partials/headerBlog") %>
+<%- include("../partials/navbarBlog") %>
+
+    <div class="container b_home">
+        <div id="b_header">
+            <p class="p_span text-center" id="b_title">Here's what Dave has to say...</p>
+            
+            <div class="b_items">
+                <% blog.forEach(function(blog){ %>
+                    <ul class="list-group b_list text-center">
+                        <li class="list-group-item item_title"><%= blog.title %></li>
+                        <li class="list-group-item item_date float-left">
+                            <div class="meta">
+                                <span><%= blog.created.toDateString() %></span>
+                            </div>
+                        </li>
+                        <li class="list-group-item img-fluid item_img">
+                            <img src="<%= blog.image %>" width="325">
+                        </li>
+                        <li class="list-group-item item_body">
+                            <p id="blog_body">
+                                <% if(blog.body && blog.body.length > 0) { %>
+                                    <p><%= blog.body.substring(0, 100)%></p>
+                                <% } %>
+                            </p>
+                        </li>
+                        <li class="list-group-item item_more text-right">
+                            <a href="/blogs/<%=blog._id %>"  class="btn btn-outline-light btn-lg card_btn">More...</a>
+                        </li>
+                    </ul>  
+                <% }); %>
+            </div>
+        </div>   
+    </div> 
+        
+
+<%- include("../partials/footer") %>
+
+
+
+    

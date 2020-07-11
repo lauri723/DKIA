@@ -1,0 +1,11 @@
+<%- include("./partials/header") %>
+<%- include("./partials/navbar") %>
+
+<h1 class="p_span text-center new_title">Login</h1>
+<form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Login!">
+</form>
+
+<%- include("./partials/footer") %>
