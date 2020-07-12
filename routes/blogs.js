@@ -46,13 +46,43 @@ router.post("/", isAdmin, function (req, res) {
 
 // SHOW ROUTE
 router.get("/:id", function (req, res) {
-    Blog.findById(req.params.id).populate("comments").exec(function (err, foundBlog) {
+    Blog.findById(req.params.id).populate("comments likes").exec(function (err, foundBlog) {
        if (err) {
             console.log(err);
        } else {
            console.log(foundBlog);
            res.render("blogs/show", {blog: foundBlog});
        }
+    });
+});
+
+router.post("/:id/like", isLoggedIn, function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/blogs");
+        }
+
+        // check if req.user._id exists in foundCampground.likes
+        var foundUserLike = foundBlog.likes.some(function (like) {
+            return like.equals(req.user._id);
+        });
+
+        if (foundUserLike) {
+            // user already liked, removing like
+            foundBlog.likes.pull(req.user._id);
+        } else {
+            // adding the new user like
+            foundBlog.likes.push(req.user);
+        }
+
+        foundBlog.save(function (err) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/blogs");
+            }
+            return res.redirect("/blogs/" + foundBlog._id);
+        });
     });
 });
 
@@ -69,15 +99,16 @@ router.get("/:id/edit", isAdmin, function (req, res) {
 
 // UPDATE ROUTE
 router.put("/:id", isAdmin, function(req, res) {
-   req.body.blog = req.sanitize(req.body.blog);
-Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
-       if(err) {
-           res.redirect("back");
-       } else {
-        res.redirect("/blogs/" + req.params.id);
-       }
-   });
-});
+    // req.body.blog = req.sanitize(req.body.blog);
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+        if(err) {
+            res.redirect("back");
+        } else {
+         res.redirect("/blogs/" + req.params.id);
+        }
+    });
+ });
+
 
 // DESTROY ROUTE
 router.delete("/:id", isAdmin, function(req, res){

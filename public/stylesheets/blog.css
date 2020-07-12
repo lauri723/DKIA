@@ -127,7 +127,7 @@ hr {
 }
 
 .b_list {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     padding: 15px;
     border: 3px solid red;
     border-radius: 15px;
@@ -157,6 +157,7 @@ hr {
     margin-top: 100px;
     width: 80%;
     max-width: 800px;
+    /* margin-bottom: 20px; */
 }
 
 .new_blog, .edit_blog {
@@ -199,7 +200,14 @@ textarea {
     font-size: 1.2em;
     margin: auto;
     display: flex;
-    align-items: center;
+    align-items: inline;
+}
+
+.show_buttons {
+    font-size: 1.2em;
+    margin: auto;   
+    display: flex;
+    align-items: inline;
 }
 
 .cb_rev {
@@ -210,6 +218,10 @@ textarea {
     background-color: red;
     color: #D4AF37; 
 } 
+
+.badge_index {
+    padding: auto;
+}
 
 .comments {
     font-size: .7em;
@@ -232,6 +244,7 @@ textarea {
     margin: auto;
     display: flex;
     align-items: center;
+  
 }
 
 .comment_buttons {
@@ -240,6 +253,17 @@ textarea {
     align-items: center;
 }
 
+.diamond {
+    color: #4B0082;
+}
 
+.btn-link {
+    display: inline;
+    font-size: .9em;
+    margin: auto;
+    display: flex;
+}
 
-
+.btn:hover {
+    color: #4B0082;
+}

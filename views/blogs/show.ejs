@@ -10,15 +10,46 @@
                     <span><%= blog.created.toDateString() %></span>
                 </div>
             </li>
-            <li class="list-group-item img-fluid item_img"><img src="<%= blog.image %>" width="325"></li>
-            <li class="list-group-item item_body"><p id="blog_body"><%= blog.body %></p></li>
+            <li class="list-group-item img-fluid item_img">
+                <img src="<%= blog.image %>" width="325">
+            </li>
+            <button type="button" class="btn btn-xs btn-link" data-toggle="modal"
+                        data-target="#blogLikes">
+                    <span class="diamond">Total Likes: <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gem" fill="#4B0082" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z"/>
+                        </svg> <%= blog.likes.length %></span>
+                </button>
+                <form action="/blogs/<%= blog._id %>/like" method="POST">
+                    <div class="btn-group">
+                        <% if (currentUser && blog.likes.some(function (like) {
+                            return like.equals(currentUser._id)
+                        })) { %>
+                        <button class="btn btn-sm btn-link">
+                            <span class="diamond">Liked: <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gem" fill="#4B0082" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z"/>
+                                </svg> <%= blog.likes.length %></span>
+                        </button>
+                        <% } else { %>
+                        <button class="btn btn-sm btn-link">
+                            <span class="diamond">Like: <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gem" fill="#4B0082" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z"/>
+                                </svg> <%= blog.likes.length %></span>
+                        </button>
+                        <% } %>
+                    </div>
+                </form>  
+            <br>
+            <li class="list-group-item item_body">
+                <p id="blog_body"><%= blog.body %></p>
+            </li>
             <p>
                 <a>Thanks for listening,  <%= blog.author.username %></a>   
             </p>
+                
             <% if(currentUser && currentUser.isAdmin){ %>
-                <a class="btn btn-outline-light btn-lg card_btn new_buttons" href="/blogs/<%= blog._id %>/edit">Edit Blog</a> 
+                <a class="btn btn-outline-light btn-lg card_btn show_buttons" href="/blogs/<%= blog._id %>/edit">Edit Blog</a> 
                 <form method="POST" action="/blogs/<%=blog._id%>?_method=DELETE">
-                    <button class="btn btn-outline-light btn-lg card_btn cb_rev new_buttons" type="submit">Delete Blog</button>
+                    <button class="btn btn-outline-light btn-lg card_btn cb_rev show_buttons" type="submit">Delete Blog</button>
                 </form>
             <% }%>
         </ul> 
@@ -46,7 +77,45 @@
         <% }) %>
     </div>
 </div> 
-         
+<div id="blogLikes" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Blog likes: <%= blog.likes.length %></h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Liked by:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% blog.likes.forEach(function(like) { %>
+                        <tr>
+                            <td><span class="badge"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gem" fill="#4B0082" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z"/>
+                                </svg></span> <%= like.username %></td>
+                        </tr>
+                    <% }); %>
+                    <% if (blog.likes.length === 0) { %>
+                        <tr>
+                            <td><em>No likes yet.</em></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <%- include("../partials/footer") %>
 
