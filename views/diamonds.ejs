@@ -1,6 +1,41 @@
 <%- include("./partials/header") %>
 <%- include("./partials/navbar") %>
 
-<h1>Diamonds Page</h1>
+<div class="container info text-center mx-auto">
+    <h1>Diamonds</h1>
+    <h4>The 4Cs of Diamond Grading</h4>
+
+    <div class="card diam_info mx-auto" style="max-width: 800px;">
+        <div id="anatomy">
+            <script type="text/javascript" src="https://4cs.gia.edu/interactive-4cs/js/embed.js?tool=anatomy"
+                    charset="UTF-8"></script>
+        </div>
+        <hr class="gia">
+        <div id="clarity">
+            <script type="text/javascript" src="https://4cs.gia.edu/interactive-4cs/js/embed.js?tool=clarity"
+                charset="UTF-8"></script>       
+        </div>
+        <hr class="gia">
+        <div id="color">
+            <script type="text/javascript" src="https://4cs.gia.edu/interactive-4cs/js/embed.js?tool=color"
+                charset="UTF-8"></script>
+        </div>
+        <hr class="gia">
+        <div id="cut">
+            <script type="text/javascript" src="https://4cs.gia.edu/interactive-4cs/js/embed.js?tool=cut"
+                    charset="UTF-8"></script>
+        </div>
+        <hr class="gia">
+        <div id="carat">
+            <script type="text/javascript" src="https://4cs.gia.edu/interactive-4cs/js/embed.js?tool=carat-weight"
+                charset="UTF-8"></script>
+        </div>
+        <hr class="gia">
+   </div>   
+</div>
+
+
+
+
 
 <%- include("./partials/footer") %>

@@ -73,11 +73,6 @@ h4 {
     color: #4B0082;
 }
 
-.ref_cards {
-    width: 75%;
-    max-width: 900px;
-}
-
 .card {
     font-size: 1.2em;
     border: none;
@@ -113,11 +108,6 @@ h4 {
     height: auto;
 }
 
-.i_blog {
-    margin: 100px auto;
-    max-width: 485px;
-}
-
 #p_i_blog {
     background-color: none;
     font-family: 'Sorts Mill Goudy', serif;
@@ -144,7 +134,7 @@ h4 {
 
 .contact {
     font-size: 1.3em;
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 100px;
 }
 
@@ -152,15 +142,34 @@ h4 {
     color: red;
 }
 
-hr {
-    background-color: #4B0082;
-        width: 80%;
-        float: center;
-        border-top: 2px solid #4B0082;
-    }
-
 #footer {
-    color: #4B0082;
+    border-top: 25px solid #4B0082;
+    border-bottom: 15px solid #4B0082;
+    margin-top: 100px;
+}
+
+#footer, .footer {
+    color: #D4AF37;
+    background-color: #4B0082;
+    font-size: .9em;
+}
+
+.footer:hover {
+    color: #D4AF37;
+} 
+
+.footer_show {
+    font-size: 1.3em;
+}
+
+.footer_contact {
+    font-size: 1.1;
+    line-height: 3em;
+}
+
+
+#lovely {
+    color: red;
 }
 
 #blog_embed {
@@ -263,3 +272,142 @@ textarea {
     background-color: red;
     color: #D4AF37; 
 } 
+
+.info h1 {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bolder;
+    color: #4B0082;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.info_image {
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
+
+#please_login{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.login_title {
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.login_reg {
+    background-color: none;
+    font-family: 'Sorts Mill Goudy', serif;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #D4AF37;
+    border: none;
+    border-radius: 8px;
+}
+
+.login_reg:hover {
+    background-color: #D4AF37;
+    color: red; 
+}
+
+#not {
+    margin-top: 30px;
+}
+
+#login_reg {
+    margin-bottom: 100px;
+}
+
+label {
+    color: red;
+}
+
+.btn_reg {
+    margin-bottom: 100px;
+}
+
+.login .form-group {
+    width: 30%;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.login_head {
+    background-color: none;
+    font-family: 'Sorts Mill Goudy', serif;
+    color: #4B0082;
+}
+
+#already {
+    margin-top: 100px;
+}
+
+#again {
+    margin-bottom: 30px;
+}
+
+.diam_info {
+    margin-top: 120px;
+}
+
+.info_title {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bolder;
+    font-size: 1.4em;
+    line-height: 1em;
+    color: #4B0082;
+}
+
+.info_text {
+    font-size: .9em;
+}
+
+.gem_info {
+    width: 90%;
+    max-width: 900px;
+}
+
+.card_gem {
+    width: 90%;
+    max-width: 16rem;
+}
+
+.stone {
+    color: red;
+    line-height: 1em;
+}
+
+h3 {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bolder;
+    line-height: 1em;
+    color: #4B0082;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.card_jewl {
+    width: 90%;
+    max-width: 12rem;
+    padding: auto;
+}
+
+.jewel {
+    width: 80%;
+    max-width: 800px;
+}
+
+.jwlry {
+    color: red;
+    font-size: .8em;
+}
+
+.gia {
+    background-color: red;
+    border-top: 3px solid red;
+    margin: 35px auto;
+    /* margin-bottom: 25px; */
+
+}

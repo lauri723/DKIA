@@ -3,6 +3,27 @@ var express = require("express"),
     Blog = require("../models/blog"),
     middleware = require("../middleware"),
     { isLoggedIn, checkUserBlog, checkUserComment, isAdmin,} = middleware
+var multer = require('multer');
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: 'laurijl', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // INDEX ROUTE
 router.get("/", isLoggedIn, function (req, res) {
@@ -21,38 +42,57 @@ router.get("/new", isAdmin, function (req, res) {
 });
 
 // CREATE ROUTE
-router.post("/", isAdmin, function (req, res) {
-    req.body.blog = req.sanitize(req.body.blog);
-    var title = req.body.title;
-    var image = req.body.image;
-    var body = req.body.body;
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newBlog = {title: title, image: image, body: body, author: author}
-
-
-    Blog.create(newBlog, function(err, newlyCreated) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(newlyCreated)
-            res.redirect("/blogs");
+router.post("/", isAdmin, upload.single('image'), function (req, res) {
+    // req.body.blog = req.sanitize(req.body.blog);
+    cloudinary.uploader.upload(req.file.path, function(result) {
+        // add cloudinary url for the image to the campground object under image property
+        req.body.blog.image = result.secure_url;
+        // add author to campground
+        req.body.blog.author = {
+          id: req.user._id,
+          username: req.user.username
         }
+        Blog.create(req.body.blog, function(err, blog) {
+          if (err) {
+            return res.redirect('back');
+          }
+          res.redirect('/blogs/' + blog.id);
     });
 });
 
 
+
+//     var title = req.body.title;
+//     var image = req.body.image;
+//     var body = req.body.body;
+//     var author = {
+//         id: req.user._id,
+//         username: req.user.username
+//     }
+//     var newBlog = {title: title, image: image, body: body, author: author}
+
+
+//     Blog.create(newBlog, function(err, newlyCreated) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log(newlyCreated)
+//             res.redirect("/blogs");
+//         }
+//     });
+// });
+
+
 // SHOW ROUTE
 router.get("/:id", function (req, res) {
-    Blog.findById(req.params.id).populate("comments likes").exec(function (err, foundBlog) {
-       if (err) {
-            console.log(err);
-       } else {
-           console.log(foundBlog);
-           res.render("blogs/show", {blog: foundBlog});
-       }
+    Blog.findById(req.params.id).populate({path:"comments", populate: {path:"likes"}}).exec(function (err, foundBlog) {
+            if (err) {
+                console.log(err);
+           } else {
+               console.log(foundBlog);
+               res.render("blogs/show", {blog: foundBlog});
+           }
+        })    
     });
 });
 

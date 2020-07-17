@@ -2,9 +2,9 @@
 <%- include("../partials/navbarBlog") %>
 
 
-<div class="container edit_blog">
+<div class="container edit_blog edit_comment">
     <div class="row">
-        <h1 class="p_span text-center new_title">Edit comment</h1>
+        <h1 class="p_span new_title">Edit comment:  </h1>
         <div class="new_blog_group">
             <form action="/blogs/<%= blog_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
                 <div class="form-group">

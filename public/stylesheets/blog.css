@@ -1,6 +1,6 @@
-body {
+/* body {
     font-family: 'Roboto', sans-serif;
-}
+} */
 
 #navbar .navbar-toggler {
     outline-color: #4B0082;
@@ -105,10 +105,39 @@ body {
 
 hr {
     background-color: #4B0082;
-        width: 80%;
-        float: center;
-        border-top: 2px solid #4B0082;
+    width: 80%;
+    float: center;
+    border-top: 2px solid #4B0082;
     }
+
+#footer {
+    border-top: 25px solid #4B0082;
+    border-bottom: 25px solid #4B0082;
+    margin-top: 100px;
+}
+
+#footer, .footer {
+    color: #D4AF37;
+    background-color: #4B0082;
+    
+}
+
+.footer:hover {
+    color: #D4AF37;
+} 
+
+.footer_show {
+    font-size: 1.3em;
+}
+
+.footer_contact {
+    font-size: 1.1;
+    line-height: 3em;
+}
+
+#lovely {
+    color: red;
+}
 
 #blog_embed {
     width: 100%;
@@ -154,10 +183,13 @@ hr {
 }  
  
 .b_show {
-    margin-top: 100px;
+    margin-top: 30px;
     width: 80%;
     max-width: 800px;
-    /* margin-bottom: 20px; */
+}
+
+#add_comment {
+    margin-bottom: 50px;
 }
 
 .new_blog, .edit_blog {
@@ -177,6 +209,10 @@ hr {
 
 textarea {
     width: 100%;
+}
+
+.blog_body {
+    color: #343a40;
 }
 
 .new_blog_group {
@@ -237,6 +273,8 @@ textarea {
 
 .comment_text {
     font-size: 1.1em;
+    padding: 20px 20px 10px 20px;
+    margin-block-end: 0px;
 }
 
 .comments .new_buttons {
@@ -258,12 +296,40 @@ textarea {
 }
 
 .btn-link {
-    display: inline;
     font-size: .9em;
-    margin: auto;
-    display: flex;
+    margin: 0px;
+    display: flex-center;
 }
 
-.btn:hover {
+.btn-link:hover {
+    color: #4B0082;
+}
+
+.com {
+    padding: 0px;
+}
+
+#body_para {
+    white-space: pre-wrap;
+}
+
+.edit_blog h1 {
+    display: flex-center;
+}
+
+.edit_comment .edit_title {
+    display: flex-center;
+}
+
+.date {
+    font-weight: light;
+    color: #6c757d;;
+}
+
+.span_show {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bolder;
+    font-size: 1.3em;
+    line-height: 1em;
     color: #4B0082;
 }

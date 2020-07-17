@@ -1,15 +1,28 @@
 <%- include("./partials/header") %>
 <%- include("./partials/navbar") %>
 
-<h1 class="p_span text-center new_title">Sign Up</h1>
+<div class="container login text-center">
 
-<form action="/register" method="POST">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <div class="form-group">
-        <input class="form-control" type="text" name="adminCode" placeholder="Admin code">
-    </div>
-    <button>Sign Up</button>
-</form>
+    <!-- <h1 class="p_span login_title text-center new_title">Register</h1> -->
+
+    <h4  class="login_head" id="please_login">Please Register to see our Blog!</h4>
+
+
+    <form action="/register" method="POST">
+        <div class="form-group login">
+          <label for="username">Username</label>
+          <input class="form-control new_form" id="username" type="text" name="username" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control new_form" id="password" type="password" name="password" placeholder="">
+        </div>
+        <div>
+            <button class="new_form btn btn-outline-light btn-lg card_btn login_reg btn_reg">Register</button>
+        </div>
+    </form>
+
+</div>
+
 
 <%- include("./partials/footer") %>

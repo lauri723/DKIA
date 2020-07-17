@@ -8,10 +8,12 @@
         <div class="new_blog_group">
             <form action="/blogs/<%= blog._id %>/comments" method="POST">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="comment[text]" placeholder="text">
+                    <label for="">Comment</label>
+                    <input class="form-control new_form" type="text" name="comment[text]" rows="4" placeholder="">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="comment[author]" placeholder="author">
+                    <label for="">Author</label>
+                    <input class="form-control new_form" type="text" name="comment[author]" placeholder="">
                 </div>
                 <div class="form-group new_buttons">
                     <button class="btn btn-outline-light btn-lg card_btn new_buttons">Submit</button>

@@ -3,6 +3,11 @@
 
     <div class="container b_home">
         <div id="b_header">
+            
+            <% if(currentUser && currentUser.isAdmin){ %>
+            <a class="btn btn-outline-light btn-lg cb_rev card_btn" href="/blogs/new">New Blog</a>
+            <% } %>
+         
             <p class="p_span text-center" id="b_title">Here's what Dave has to say...</p>
             
             <div class="b_items">
@@ -11,11 +16,11 @@
                         <li class="list-group-item item_title"><%= blog.title %></li>
                         <li class="list-group-item item_date float-left">
                             <div class="meta">
-                                <span><%= blog.created.toDateString() %></span>
+                                <span class="date"><%= blog.created.toDateString() %></span>
                             </div>
                         </li>
                         <li class="list-group-item img-fluid item_img">
-                            <img src="<%= blog.image %>" width="325">
+                            <a href="/blogs/<%=blog._id %>"><img src="<%= blog.image %>" width="325"></a>
                         </li>
                        
                             <div>
@@ -26,14 +31,14 @@
                             </div>
                       
                         <li class="list-group-item item_body">
-                            <p id="blog_body">
+                            <p class="blog_body">
                                 <% if(blog.body && blog.body.length > 0) { %>
                                     <p><%= blog.body.substring(0, 100)%></p>
                                 <% } %>
                             </p>
                         </li>
                         <li class="list-group-item item_more text-right">
-                            <a href="/blogs/<%=blog._id %>"  class="btn btn-outline-light btn-lg card_btn">More...</a>
+                            <a href="/blogs/<%=blog._id %>"  class="btn btn-outline-light btn-lg card_btn">See more...</a>
                         </li>
                     </ul>  
                 <% }); %>

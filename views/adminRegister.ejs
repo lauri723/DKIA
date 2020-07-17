@@ -1,0 +1,42 @@
+<%- include("./partials/header") %>
+<%- include("./partials/navbar") %>
+
+<div class="container login text-center">
+
+    <h1 class="p_span login_title text-center new_title">Admin Register</h1>
+
+    <h4 id="please_login">Please Register to become an admin for the Blog!</h4>
+
+
+    <form action="/adminRegister" method="POST">
+        <div class="form-group login">
+          <label for="username">Username</label>
+          <input class="form-control new_form" id="username" type="text" name="username" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control new_form" id="password" type="password" name="password" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="adminCode">Admin Code</label>
+            <input class="form-control new_form" id="adminCode" type="text" name="adminCode" placeholder="">
+        </div>
+        <div>
+            <button class="new_form btn btn-outline-light btn-lg card_btn login_reg btn_reg">Admin Register</button>
+        </div>
+    </form>
+
+</div>
+
+
+<%- include("./partials/footer") %>
+
+
+
+
+
+
+
+
+
+
