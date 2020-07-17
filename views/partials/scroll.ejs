@@ -1,0 +1,65 @@
+<style>
+    .top_scroll {
+        height: 50px;  
+        overflow: hidden;
+        position: relative;
+        margin-top: 20px;
+    }
+    .top_scroll h3 {
+        font-family: 'Sorts Mill Goudy', serif;
+        font-style: italic;
+        font-size: 1.6em;
+        line-height: 1em;
+        color: #4B0082;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        line-height: 50px;
+        text-align: center;
+        /* Starting position */
+        -moz-transform:translateX(100%);
+        -webkit-transform:translateX(100%);    
+        transform:translateX(100%);
+        /* Apply animation to this element */  
+        -moz-animation: top_scroll 25s linear infinite;
+        -webkit-animation: top_scroll 25s linear infinite;
+        animation: top_scroll 25s linear infinite;
+        }
+        /* Move it (define the animation) */
+        @-moz-keyframes top_scroll {
+        0%   { -moz-transform: translateX(100%); }
+        100% { -moz-transform: translateX(-100%); }
+        }
+        @-webkit-keyframes top_scroll {
+        0%   { -webkit-transform: translateX(100%); }
+        100% { -webkit-transform: translateX(-100%); }
+        }
+        @keyframes top_scroll {
+        0%   { 
+        -moz-transform: translateX(100%); /* Firefox bug fix */
+        -webkit-transform: translateX(100%); /* Firefox bug fix */
+        transform: translateX(100%);       
+        }
+        100% { 
+        -moz-transform: translateX(-100%); /* Firefox bug fix */
+        -webkit-transform: translateX(-100%); /* Firefox bug fix */
+        transform: translateX(-100%); 
+        }
+        }
+
+    .testimonial {
+        font-family: 'Roboto', sans-serif;
+        font-weight: light;
+        color: #6c757d;
+        font-size: .6em;
+    }
+    </style>
+    
+    <!-- HTML -->   
+    <div class="top_scroll">
+    <h3>"Dave's a veteran of the industry and his vast knowledge shines through in this podcast..." <span class="testimonial">Travis J, May 2020</span> </h3>
+    </div>
+    
+    
+    

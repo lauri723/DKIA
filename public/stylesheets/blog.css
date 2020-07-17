@@ -103,13 +103,6 @@
     line-height: .8em;
 }
 
-hr {
-    background-color: #4B0082;
-    width: 80%;
-    float: center;
-    border-top: 2px solid #4B0082;
-    }
-
 #footer {
     border-top: 25px solid #4B0082;
     border-bottom: 25px solid #4B0082;
@@ -323,7 +316,7 @@ textarea {
 
 .date {
     font-weight: light;
-    color: #6c757d;;
+    color: #6c757d;
 }
 
 .span_show {
